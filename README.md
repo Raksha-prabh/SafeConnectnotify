@@ -48,4 +48,4 @@ http://127.0.0.1:5000
 
 **Raksha Prabhu**
 
-GitHub: https://github.com/Raksha-Prabh
+GitHub: https://github.com/Raksha-prabh
