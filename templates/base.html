@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+    <title>SafeConnect Notify</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="d-flex">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h3 class="logo">
+          <i class="bi bi-shield-check"></i>
+          SafeConnect
+        </h3>
+
+        <ul class="nav flex-column">
+          <li>
+            <a href="/dashboard">
+              <i class="bi bi-speedometer2"></i>
+              Dashboard
+            </a>
+          </li>
+
+          <li>
+            <a href="/analysis">
+              <i class="bi bi-robot"></i>
+              AI Analysis
+            </a>
+          </li>
+
+          <li>
+            <a href="/fake-detection">
+              <i class="bi bi-person-x-fill"></i>
+              Fake Detection
+            </a>
+          </li>
+
+          <li>
+            <a href="/friend-checker">
+              <i class="bi bi-people-fill"></i>
+              Friend Checker
+            </a>
+          </li>
+          <li>
+            <a href="/scam-analyzer">
+              <i class="bi bi-chat-left-text-fill"></i>
+              Scam Analyzer
+            </a>
+          </li>
+
+          <li>
+            <a href="/about">
+              <i class="bi bi-info-circle"></i>
+              About
+            </a>
+          </li>
+
+          <li>
+            <a href="/">
+              <i class="bi bi-house-fill"></i>
+              Home
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Top Navbar -->
+        <nav class="topbar">
+          <h4>🛡 SafeConnect Notify</h4>
+
+          <div class="top-icons">
+            <i class="bi bi-bell-fill"></i>
+
+            <i class="bi bi-person-circle"></i>
+          </div>
+        </nav>
+        <div class="container-fluid mt-4">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {% block scripts %} {% endblock %}
+  </body>
+</html>

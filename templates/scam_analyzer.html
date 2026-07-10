@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div class="card shadow-lg">
+    <div class="card-header bg-danger text-white">
+      <h2>🕵️ AI Scam Chat Analyzer</h2>
+
+      <p>Paste any WhatsApp, Instagram, Telegram or SMS message.</p>
+    </div>
+
+    <div class="card-body">
+      <form method="POST">
+        <textarea
+          class="form-control"
+          name="message"
+          rows="8"
+          placeholder="Paste message here..."
+          required
+        ></textarea>
+
+        <br />
+
+        <div class="text-center">
+          <button class="btn btn-danger btn-lg">Analyze Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if scam_probability is defined %}
+
+  <br />
+
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white">
+      <h3>Analysis Result</h3>
+    </div>
+
+    <div class="card-body">
+      <h4>
+        Scam Probability :
+
+        <span class="text-danger"> {{ scam_probability }}% </span>
+      </h4>
+
+      <hr />
+
+      <h4>
+        Scam Type :
+
+        <span class="text-warning"> {{ scam_type }} </span>
+      </h4>
+
+      <hr />
+
+      <h4>Suspicious Keywords</h4>
+
+      <ul>
+        {% for word in keywords %}
+
+        <li>{{ word }}</li>
+
+        {% endfor %}
+      </ul>
+
+      <hr />
+
+      <div class="alert alert-danger">
+        <b>AI Recommendation</b>
+
+        <br /><br />
+
+        {{ recommendation }}
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+</div>
+
+{% endblock %}

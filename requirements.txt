@@ -1,0 +1,7 @@
+Flask
+Flask-MySQLdb
+Flask-Login
+Werkzeug
+numpy
+pandas
+scikit-learn

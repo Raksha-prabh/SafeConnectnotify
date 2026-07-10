@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-danger text-white text-center">
+            <h2>🕵️ AI Fake Account Detection</h2>
+            <p class="mb-0">
+                Detect suspicious social media accounts using AI analysis
+            </p>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST">
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-circle"></i>
+                            Username
+                        </label>
+
+                        <input type="text"
+                               name="username"
+                               class="form-control"
+                               placeholder="@username"
+                               required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-people-fill"></i>
+                            Followers
+                        </label>
+
+                        <input type="number"
+                               name="followers"
+                               class="form-control"
+                               placeholder="120"
+                               required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Following
+                        </label>
+
+                        <input type="number"
+                               name="following"
+                               class="form-control"
+                               placeholder="600"
+                               required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-grid-3x3-gap-fill"></i>
+                            Posts
+                        </label>
+
+                        <input type="number"
+                               name="posts"
+                               class="form-control"
+                               placeholder="25"
+                               required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            <i class="bi bi-image"></i>
+                            Profile Picture
+                        </label>
+
+                        <select name="profile_picture"
+                                class="form-select">
+
+                            <option value="yes">Available</option>
+                            <option value="no">Not Available</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            <i class="bi bi-card-text"></i>
+                            Bio
+                        </label>
+
+                        <select name="bio"
+                                class="form-select">
+
+                            <option value="yes">Available</option>
+                            <option value="no">No Bio</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+
+                    <button class="btn btn-danger btn-lg px-5">
+
+                        <i class="bi bi-search"></i>
+
+                        Detect Fake Account
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% if probability is defined %}
+
+    <div class="card shadow-lg mt-5">
+
+        <div class="card-header bg-dark text-white">
+            <h3>🤖 Fake Account Detection Report</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row text-center">
+
+                <div class="col-md-4">
+
+                    <h5>Username</h5>
+
+                    <h3 class="text-primary">
+                        {{ username }}
+                    </h3>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h5>Fake Probability</h5>
+
+                    <h2 class="text-danger">
+                        {{ probability }}%
+                    </h2>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h5>Detection Result</h5>
+
+                    {% if result=="Likely Genuine" %}
+
+                    <span class="badge bg-success fs-5">
+                        {{ result }}
+                    </span>
+
+                    {% elif result=="Possibly Fake" %}
+
+                    <span class="badge bg-warning text-dark fs-5">
+                        {{ result }}
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-danger fs-5">
+                        {{ result }}
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h4>🔍 AI Findings</h4>
+
+            <ul class="list-group mt-3">
+
+                {% for reason in reasons %}
+
+                <li class="list-group-item">
+                    ✅ {{ reason }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+            <div class="alert alert-info mt-4">
+
+                <strong>AI Recommendation</strong>
+
+                <br><br>
+
+                {{ recommendation }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

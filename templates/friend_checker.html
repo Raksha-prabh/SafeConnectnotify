@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-success text-white text-center">
+            <h2>👥 Friend Request Safety Checker</h2>
+            <p class="mb-0">
+                Check whether a friend request is safe before accepting it.
+            </p>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-circle"></i> Username
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            placeholder="@username"
+                            required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-calendar-event"></i> Account Age (Days)
+                        </label>
+
+                        <input
+                            type="number"
+                            name="account_age"
+                            class="form-control"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-people-fill"></i> Followers
+                        </label>
+
+                        <input
+                            type="number"
+                            name="followers"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-plus-fill"></i> Following
+                        </label>
+
+                        <input
+                            type="number"
+                            name="following"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-grid-3x3-gap-fill"></i> Posts
+                        </label>
+
+                        <input
+                            type="number"
+                            name="posts"
+                            class="form-control"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            <i class="bi bi-patch-check-fill"></i>
+                            Verified Account
+                        </label>
+
+                        <select class="form-select" name="verified">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            <i class="bi bi-image-fill"></i>
+                            Profile Picture
+                        </label>
+
+                        <select class="form-select" name="profile_picture">
+                            <option value="Yes">Available</option>
+                            <option value="No">No Profile Picture</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+
+                    <button class="btn btn-success btn-lg px-5">
+                        <i class="bi bi-search"></i>
+                        Check Safety
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% if trust_score is defined %}
+
+    <div class="card shadow-lg mt-5">
+
+        <div class="card-header bg-dark text-white">
+            <h3>📊 Friend Request Analysis</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row text-center">
+
+                <div class="col-md-6">
+
+                    <h5>Username</h5>
+
+                    <h3 class="text-info">
+                        {{ username }}
+                    </h3>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <h5>Trust Score</h5>
+
+                    <h2 class="text-primary">
+                        {{ trust_score }}/100
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h4>Recommendation</h4>
+
+            {% if recommendation == "Safe to Accept" %}
+
+                <span class="badge bg-success fs-5">
+                    {{ recommendation }}
+                </span>
+
+            {% elif recommendation == "Proceed with Caution" %}
+
+                <span class="badge bg-warning text-dark fs-5">
+                    {{ recommendation }}
+                </span>
+
+            {% else %}
+
+                <span class="badge bg-danger fs-5">
+                    {{ recommendation }}
+                </span>
+
+            {% endif %}
+
+            <hr>
+
+            <h4>AI Findings</h4>
+
+            <ul class="list-group mt-3">
+
+                {% for reason in reasons %}
+
+                <li class="list-group-item">
+                    {{ reason }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
